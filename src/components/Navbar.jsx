@@ -48,8 +48,8 @@ function Navbar() {
   const gotoAlertForm = () => {
     openForm("alertForm");
   };
-  const gotoProfleForm = () => {
-    openForm("profleForm");
+  const gotoProfileForm = () => {
+    openForm("profileForm");
   };
 
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
@@ -87,7 +87,7 @@ function Navbar() {
               <LogoutButton /> 
             </span>
             <Margin left="2"></Margin>
-              <span className="text-sm" onClick={gotoProfleForm}>
+              <span className="text-sm" onClick={gotoProfileForm}>
               <ProfileButton /> 
             </span>
             </div>

@@ -7,9 +7,10 @@ import { AuthContext } from '../../context/AuthContextProvider';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import DynamicColorButton from '../DynamicColorButton';
-import LoginInput from './LoginInput';
-import SelectButton from '../../components/ui/SelectButton';
+
+import SelectButton from '../ui/SelectButton';
 import { OpenModalContext } from '../../context/OpenModalProvider';
+import LoginInput from './FormComponents/LoginInput';
 
 
 function LoginRegister() {

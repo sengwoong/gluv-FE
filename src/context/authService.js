@@ -53,6 +53,7 @@ export const authService = {
         return { success: false, error: "Unexpected status code" };
       }
     } catch (error) {
+        // 실패시 에러창
       console.error("회원 가입 실패:", error.message);
       return { success: false, error: error.message };
     }

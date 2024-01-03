@@ -6,7 +6,9 @@ import { Request } from '../../api/api';
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 import Contour from '../ui/Contour'
-import Pagination from './Pagination';
+import Pagination from '../PostListPage/Pagination';
+
+
 
 function AlertFormMain() {
   const { closeForm } = useContext(OpenModalContext);

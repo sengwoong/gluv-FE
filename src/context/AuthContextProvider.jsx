@@ -11,6 +11,8 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     const { success, data } = await authService.login(inputs);
+    // 성공 실패 반환해서 화면에 뛰우기
+    console.log(success)
     if (success) {
       setCurrentUser(data);
       return true;

@@ -1,13 +1,13 @@
 // authContext.jsx
 import React, { createContext, useReducer } from "react";
 
-import LoginForm from "../components/Login/LoginForm";
-import AlertForm from "../components/Login/AlertForm";
-import NotifyForm from "../components/Login/NotifyForm";
-import PasswordChangeForm from "../components/Login/PasswordChageForm.jsx";
-import LoginRegister from "../components/Login/LoginRegister.jsx";
-import AlertFormMain from  "../components/Login/AlertFormMain";
-import ProfleForm from "../components/Login/ProfleForm.jsx";
+import LoginForm from "../components/Form/LoginForm";
+import AlertForm from "../components/Form/AlertForm";
+import NotifyForm from "../components/Form/NotifyForm";
+import PasswordChangeForm from "../components/Form/PasswordChageForm.jsx";
+import LoginRegisterForm from "../components/Form/LoginRegisterForm.jsx";
+import AlertFormMain from  "../components/Form/AlertFormMain";
+import ProfileForm from "../components/Form/ProfleForm.jsx";
 
 // Actions
 const OPEN_FORM = "OPEN_FORM";
@@ -41,17 +41,18 @@ export const OpenModalProvider = ({ children }) => {
 
   const formConfig = {
     loginForm: LoginForm,
-    registerForm: LoginRegister,
+    registerForm: LoginRegisterForm,
     alertForm: AlertForm,
     notifyForm: NotifyForm,
     alertFormMain: AlertFormMain,
     passwordChangeForm: PasswordChangeForm,
-    profileForm: ProfleForm,
+    profileForm: ProfileForm,
   };
-  
+
   const renderForm = () => {
     const FormComponent = formConfig[state.selectedCategory];
-  
+    console.log("state.selectedCategory")
+  console.log(state.selectedCategory)
     if (FormComponent) {
       return <FormComponent onClose={closeForm} />;
     } else {

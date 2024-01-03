@@ -10,10 +10,8 @@ import Margin from '../Margin';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 
 function ProfileForm() {
-  // const navigate = useNavigate();
 
-  const { openForm } = useContext(OpenModalContext);
-  const { logout, isAuthenticated, getDecodedToken, getUserInfo } = useContext(AuthContext);
+  const { logout, getUserInfo } = useContext(AuthContext);
   const [profileData, setProfileData] = useState({
     profile_image: '',
     nickname: '',
@@ -21,10 +19,7 @@ function ProfileForm() {
   });
 
   const gotoProfile =()=>{
-    // 수정해야함
-    // 최근 React에서 된다고 하는 것 같으나 BrowserRouter 내에 존재해야 사용가능함.
-    // withRouter 나 다른 모듈들을 사용해야할 것으로 보임
-    // navigate('/users/myteams/');
+
     window.location.href = '/users/myteams/';
   }
 

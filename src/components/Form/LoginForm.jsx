@@ -6,7 +6,7 @@ import { AuthContext } from '../../context/AuthContextProvider';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 
 import DynamicColorButton from '../DynamicColorButton';
-import LoginInput from './LoginInput'; // Import the new component
+import LoginInput from './FormComponents/LoginInput'; // Import the new component
 import ModalPortal from '../ui/ModalPortal';
 import PortalBg from '../ui/PortalBg';
 
