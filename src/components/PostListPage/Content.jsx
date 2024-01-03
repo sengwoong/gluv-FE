@@ -9,7 +9,7 @@ import SubCategoryPage from './SubCategoryPage.jsx'
 import Pagination from './Pagination.jsx';
 import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
-import useWindowSize from '../../hooks/useWindowSize';
+import useWindowSize from '../../context/useWindowSize.jsx';
 import BulletinBoard from './BulletinBoard';
 import { ModelContext } from '../../context/ModelContextProvider'
 import { useSearchParams } from 'react-router-dom';

@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthContextProvider } from "./context/AuthContextProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ModelContextProvider } from "./context/ModelContextProvider";
-import { BottomMenuProvider } from "./context/BottomMenu";
 import { OpenModalProvider } from "./context/OpenModalProvider";
 import "./index.css";
 
@@ -15,13 +14,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthContextProvider>
-        <ModelContextProvider>
-          <BottomMenuProvider>
+        <ModelContextProvider>       
           <OpenModalProvider>
-           
             <App />
             </OpenModalProvider>
-            </BottomMenuProvider>
         </ModelContextProvider>
       </AuthContextProvider>
     </QueryClientProvider>

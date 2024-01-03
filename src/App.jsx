@@ -23,15 +23,12 @@ import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
-import Error500 from './components/Error/Error500Page.jsx';
-import Error404 from './components/Error/Error404Page.jsx';
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
 import LeftMenu2 from "./components/LeftMenu2.jsx";
 import LeftMenu3 from "./components/LeftMenu3.jsx";
-import Error404Page from "./components/Error/Error404Page.jsx";
-import Error500Page from "./components/Error/Error500Page.jsx";
+
 import Auth from "./Auth.jsx";
 
 
@@ -129,10 +126,7 @@ const pages = [
   // 채팅페이지
   { path: "/chatroom/:room_id/", component: Auth(Chatting), layoutType: "Non" },
 
-  // 에러 페이지
-  { path: "/error/404/", component: Error404Page, layoutType: "Non" },
-  { path: "/error/500/", component: Error500Page, layoutType: "Non" },
-  
+
 
   
 ];

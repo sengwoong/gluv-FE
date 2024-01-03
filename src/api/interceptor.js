@@ -30,11 +30,6 @@ httpClient.interceptors.response.use(
         window.location.href = '/users/login';
         return Promise.reject(refreshError);
       }
-    } else if(error.response && error.response.status === 500){
-      window.location.href = baseURL+'/error/500/';
-  
-    }else{
-      window.location.href=baseURL+'/error/404/'
     }
     
     return Promise.reject(error);
