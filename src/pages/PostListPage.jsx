@@ -1,12 +1,12 @@
 import {React, useState} from 'react'
 
 import Content from '../components/PostListPage/Content'
-import RecruitmentLeftMenu from '../components/PostListPage/RecruitmentLeftMenu'
+import PostListLeftMenu from '../components/PostListPage/PostListLeftMenu'
 
 function PostListPage() {
   return (
     <div className='flex'>
-    <RecruitmentLeftMenu/>
+    <PostListLeftMenu/>
     <Content />
     </div>
   )

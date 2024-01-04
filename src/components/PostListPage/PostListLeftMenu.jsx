@@ -3,7 +3,7 @@ import React from 'react'
 import TopMenu from './TopMenu'
 import BottomMenu from './BottomMenu'
 
-function LeftMenu() {
+function PostListLeftMenu() {
   return (
     <div className='flex flex-col'>
     <div><TopMenu></TopMenu></div>
@@ -12,4 +12,4 @@ function LeftMenu() {
   )
 }
 
-export default LeftMenu
+export default PostListLeftMenu

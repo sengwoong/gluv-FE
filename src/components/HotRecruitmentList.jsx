@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import {  fetchHotRecruits } from '../../api/recruits';
+import {  fetchHotRecruits } from '../api/recruits';
 
 function HotRecruitmentList ({ category }){
     const [postData, setPost] = useState([]);

@@ -10,7 +10,7 @@ import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
 import { Link } from 'react-router-dom';
 import TopMenu from '../components/PostListPage/TopMenu';
-import HotRecruitmentList from '../components/PostListPage/HotRecruitmentList';
+import HotRecruitmentList from '../components/HotRecruitmentList';
 
 
 const sampleData = [

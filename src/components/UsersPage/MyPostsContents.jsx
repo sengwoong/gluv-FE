@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Margin from "../Margin";
 import DynamicColorButton from "../DynamicColorButton";
-import BulletinBoard from "../PostListPage/BulletinBoard";
+import BulletinBoard from "../Boartd/BulletinBoard";
 
 import "react-datepicker/dist/react-datepicker.css";
 

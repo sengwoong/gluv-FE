@@ -27,7 +27,7 @@ httpClient.interceptors.response.use(
         }
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
-        window.location.href = '/users/login';
+        window.location.href = '/';
         return Promise.reject(refreshError);
       }
     }
