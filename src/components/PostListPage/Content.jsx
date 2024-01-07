@@ -5,12 +5,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import { FetchPost } from '../../api/post';
-import Pagination from '../Pagination/Pagination.jsx';
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+import Margin from '../ui/Margin.jsx';
+import DynamicColorButton from '../ui/Button/DynamicColorButton.jsx';
 import useWindowSize from '../../context/useWindowSize.jsx';
-import BulletinBoard from '../Boartd/BulletinBoard.jsx';
+import BulletinBoard from '../ui/Input/BulletinBoard.jsx';
 import { ModelContext } from '../../context/ModelContextProvider';
+import ButtonPagination from '../Pagination/ButtonPagination.jsx';
 
 function Content() {
   const [searchParams] = useSearchParams();
@@ -120,7 +120,7 @@ function Content() {
           />
         </div>
         <div className="flex justify-center items-center">
-          <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+          <ButtonPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
         </div>
       </div>
     </div>

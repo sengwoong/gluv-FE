@@ -2,8 +2,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContextProvider';
 import Contour from '../ui/Contour';
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
+import Margin from '../ui/Margin';
 
 function TopMenu() {
   const [profileData, setProfileData] = useState({

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import Contour from '../ui/Contour';
 import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 import 'react-datepicker/dist/react-datepicker.css';
 
 

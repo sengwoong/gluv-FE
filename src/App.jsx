@@ -3,8 +3,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import React from "react";
 
 import MainPage from './pages/MainPage.jsx';
-import MyPostPage from './pages/MyPostPage.jsx';
-import MyTeamPage from './pages/MyTeamPage.jsx';
 import RecruitmentDetailPage from './pages/RecruitmentDetailPage.jsx';
 import PostEntryPage from './pages/PostEntryPage.jsx';
 import MyPostsPage from './pages/MyPostsPage.jsx';
@@ -19,16 +17,13 @@ import TeamRegistrationManagement from './pages/TeamRegistrationManagement.jsx';
 import TeamManagement from './pages/TeamManagement.jsx';
 import TeamPage from './pages/TeamPage.jsx';
 import NotFound from './pages/NotFound.jsx';
-import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
-import Navbar from "./components/Navbar.jsx";
-import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
-import LeftMenu2 from "./components/LeftMenu2.jsx";
-import LeftMenu3 from "./components/LeftMenu3.jsx";
+
 
 import Auth from "./Auth.jsx";
+import Navbar from "./components/ui/Navbar.jsx";
 
 
 
@@ -42,33 +37,19 @@ const SiteLayout = () => {
   );
 };
 
-const My = ({children}) => {
-  return (
-    <div className="flex">
-      <LeftMenu2 />
-      <div>{children}</div>
-    </div>
-  );
-};
+
+
 
 
 const Profile = ({children}) => {
   return (
     <div className="flex">
-      <LeftMenu />
+      <ProfileMenu />
       {children}
     </div>
   );
 };
 
-const Enroll = ({children}) => {
-  return (
-    <div className="flex">
-      <LeftMenu3 />
-      {children}
-    </div>
-  );
-};
 
 // 페이지 정보 정의
 const pages = [

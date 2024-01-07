@@ -1,9 +1,9 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, {  useContext } from "react";
 
 import { TeamContext } from './TeamContext';
 
-import Margin from "../Margin";
-import DynamicColorButton from "../DynamicColorButton";
+import Margin from "../ui/Margin";
+import DynamicColorButton from "../ui/Button/DynamicColorButton";
 import Contour from "../ui/Contour";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link, useParams } from "react-router-dom";

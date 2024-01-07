@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 
-import { OpenModalContext } from '../../context/OpenModalProvider';
+import { OpenModalContext } from '../../../context/OpenModalProvider';
 
 
 function PortalBg({  children }) {

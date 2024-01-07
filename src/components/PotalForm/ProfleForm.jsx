@@ -3,10 +3,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
 
 
-import ModalPortal from '../ui/ModalPortal';
-import PortalBgRight from '../ui/PortalBgRight';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBgRight from '../ui/portal/PortalBgRight';
 import Contour from '../ui/Contour';
-import Margin from '../Margin';
+import Margin from '../ui/Margin';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 
 function ProfileForm() {

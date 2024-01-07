@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import TeamBox from "../TeamBox";
-import Margin from "../Margin";
 import Contour from "../ui/Contour";
+import Margin from "../ui/Margin";
+import TeamBox from "../ui/Input/TeamBox";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);

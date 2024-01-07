@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBg from '../ui/portal/PortalBg';
 
 function NotifyForm({ onClose }) {
  

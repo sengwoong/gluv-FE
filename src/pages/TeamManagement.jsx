@@ -7,7 +7,7 @@ import { AuthContext } from '../context/AuthContextProvider';
 import TeamLeftMenu from '../components/TeamPage/TeamLeftMenu';
 import { getTeamMembers } from '../api/team';
 import { useParams } from 'react-router-dom';
-import Margin from '../components/Margin';
+import Margin from '../components/ui/Margin';
 import Contour from '../components/ui/Contour';
 import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';

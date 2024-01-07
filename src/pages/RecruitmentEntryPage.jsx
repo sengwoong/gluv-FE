@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 
 import { createRecruitsPost } from '../api/recruits';
 
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
-import EditorComponent from '../components/ui/EditorComponent';
-import InputField from '../components/InputField';
-import SelectButton from '../components/ui/SelectButton';
+
+import DynamicColorButton from '../components/ui/Button/DynamicColorButton';
+import EditorComponent from '../components/ui/Input/EditorComponent';
+import InputField from '../components/ui/Input/InputField';
+import SelectButton from '../components/ui/Button/SelectButton';
 import { Link, useNavigate} from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import Margin from '../components/ui/Margin';
 function RecruitmentPostEntryPage() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

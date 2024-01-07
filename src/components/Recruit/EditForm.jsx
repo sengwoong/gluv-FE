@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Request } from '../../api/api';
 import Contour from '../ui/Contour';
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+import Margin from '../ui/Margin';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 import {getPlainTextFromHtml} from '../../../utils/ParseString'
 
 

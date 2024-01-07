@@ -1,6 +1,6 @@
 import React from "react";
 
-import Contour from "./ui/Contour";
+import Contour from "../Contour";
 import { Link } from "react-router-dom";
 
 const formatDate = (timestamp) => {

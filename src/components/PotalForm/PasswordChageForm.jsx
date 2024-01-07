@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBg from '../ui/portal/PortalBg';
 import { OpenModalContext } from '../../context/OpenModalProvider';
-import DynamicColorButton from '../DynamicColorButton';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 function PasswordChangeForm({ onClose }) {
   const { openForm } = useContext(OpenModalContext);
 

@@ -1,13 +1,13 @@
 // authContext.jsx
 import React, { createContext, useReducer } from "react";
 
-import LoginForm from "../components/Form/LoginForm";
-import AlertForm from "../components/Form/AlertForm";
-import NotifyForm from "../components/Form/NotifyForm";
-import PasswordChangeForm from "../components/Form/PasswordChageForm.jsx";
-import LoginRegisterForm from "../components/Form/LoginRegisterForm.jsx";
-import AlertFormMain from  "../components/Form/AlertFormMain";
-import ProfileForm from "../components/Form/ProfleForm.jsx";
+import LoginForm from "../components/PotalForm/LoginForm.jsx";
+import AlertForm from "../components/PotalForm/AlertForm.jsx";
+import NotifyForm from "../components/PotalForm/NotifyForm.jsx";
+import PasswordChangeForm from "../components/PotalForm/PasswordChageForm.jsx";
+import LoginRegisterForm from "../components/PotalForm/LoginRegisterForm.jsx";
+import AlertFormMain from  "../components/PotalForm/AlertFormMain.jsx";
+import ProfileForm from "../components/PotalForm/ProfleForm.jsx";
 
 // Actions
 const OPEN_FORM = "OPEN_FORM";

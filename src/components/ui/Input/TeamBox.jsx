@@ -1,7 +1,8 @@
 import React from "react";
 
-import Margin from "./Margin";
+
 import { Link } from "react-router-dom";
+import Margin from "../Margin";
 
 function TeamBox({ teamData }) {
   const { id, image, category, name } = teamData;

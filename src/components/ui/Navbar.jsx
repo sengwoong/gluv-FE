@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 
-import { AuthContext } from "../context/AuthContextProvider";
+import { AuthContext } from "../../context/AuthContextProvider";
 
 import { Link, useNavigate } from "react-router-dom";
 import Margin from "./Margin";
-import LoginButton from "./ui/LoginButton";
-import LogoutButton from "./ui/LogoutButton";
-import NotificationClickButton from "./ui/NotificationClickButton";
-import ProfileButton from "./ui/ProfileButton";
-import { OpenModalContext } from "../context/OpenModalProvider";
+import LoginButton from "./Button/LoginButton";
+import LogoutButton from "./Button/LogoutButton";
+import NotificationClickButton from "./Button/NotificationClickButton";
+import ProfileButton from "./Button/ProfileButton";
+import { OpenModalContext } from "../../context/OpenModalProvider";
 
 function Logo() {
   

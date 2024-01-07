@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
-import TeamBox from "../TeamBox";
-import Margin from "../Margin";
+
 import Contour from "../ui/Contour";
 
 import { Link } from "react-router-dom";
 import { Request } from "../../api/api";
+import TeamBox from "../ui/Input/TeamBox";
+import Margin from "../ui/Margin";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);

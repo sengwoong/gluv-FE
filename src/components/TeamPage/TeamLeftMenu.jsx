@@ -4,7 +4,7 @@ import { TeamContext } from './TeamContext';
 import {  TeamLeave, TeamDelete } from "../../api/team";
 import { CheckRecruitsApplied } from "../../api/recruits";
 
-import Margin from "../Margin";
+import Margin from "../ui/Margin";
 import Contour from "../ui/Contour";
 import { Link, useParams } from "react-router-dom";
 import { Request } from "../../api/api";

@@ -2,8 +2,8 @@ import React from 'react';
 
 import { TeamLeave, applyToTeam, kickTeamMember } from '../../api/team';
 
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+import Margin from '../ui/Margin';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 import crew from '../../assets/crew.png';
 import leader from '../../assets/leader.png';
 

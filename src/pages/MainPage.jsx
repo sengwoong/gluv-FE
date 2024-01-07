@@ -16,7 +16,6 @@ function MainPage() {
     <main className="h-full" style={textStyle}>
       <div className="flex h-full justify-center">
         <div className="w-8/12">
-
           {/* 배너 이미지 */}
           <div className="w-full max-w-screen mx-auto rounded-lg overflow-hidden relative">
               {/*타이틀*/}
@@ -25,16 +24,10 @@ function MainPage() {
               </div>
             <BookBanner />
           </div>
-
-
-
-
-
           <div className="flex-row max-w-screen-xl min-w-0">
             <hr className="my-4 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
             {/* 최신 모집글 */}
             <div className="flex w-full relative">
-              
               <h2 className="font-bold text-black px-4 mb-3 flex items-center md:px-0 md:mb-4 w-full">
                 <span className="font-bold">최신 모집글</span>
                 <a
@@ -44,24 +37,16 @@ function MainPage() {
                   <span>더보기</span>
                 </a>
               </h2>
-              {/* 최신 모집글 리스트 */}
             </div>
+            {/* 최신 모집글 리스트 */}
             <RecentRecruitCardList className="mb-10"></RecentRecruitCardList>
           </div>
-
-          
         </div>
-
-
-
         {/* 화제의 게시글 */}
         <div className="w-3/12">
           <HotPostList></HotPostList>
         </div>
-
       </div>
-
-
       {/* 카테고리 별 게시판 */}
       <div>
         <hr className="my-8 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
@@ -75,9 +60,6 @@ function MainPage() {
         </div>
         <hr className="my-4 border-b-2 border-b-[#f5f5f5] border-t-0"></hr>
       </div>
-
-
-
     </main>
   );
 }

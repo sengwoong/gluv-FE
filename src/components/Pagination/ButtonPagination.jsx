@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pagination({ currentPage, totalPages, onPageChange }) {
+function ButtonPagination({ currentPage, totalPages, onPageChange }) {
     return (
     <div className="flex items-center justify-center space-x-4 mt-4">
         <button
@@ -26,4 +26,4 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
     );
 }
 
-export default Pagination;
+export default ButtonPagination;

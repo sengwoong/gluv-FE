@@ -5,10 +5,10 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/AuthContextProvider';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 
-import DynamicColorButton from '../DynamicColorButton';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 import LoginInput from './FormComponents/LoginInput'; // Import the new component
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBg from '../ui/portal/PortalBg';
 
 function LoginForm() {
   const { closeForm, openForm } = useContext(OpenModalContext);

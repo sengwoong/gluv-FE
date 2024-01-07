@@ -4,11 +4,11 @@ import React, { useContext, useState } from 'react';
 
 import { AuthContext } from '../../context/AuthContextProvider';
 
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
-import DynamicColorButton from '../DynamicColorButton';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBg from '../ui/portal/PortalBg';
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 
-import SelectButton from '../ui/SelectButton';
+import SelectButton from '../ui/Button/SelectButton';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import LoginInput from './FormComponents/LoginInput';
 

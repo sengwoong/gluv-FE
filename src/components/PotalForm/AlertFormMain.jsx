@@ -3,10 +3,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { OpenModalContext } from '../../context/OpenModalProvider';
 import { Request } from '../../api/api';
 
-import ModalPortal from '../ui/ModalPortal';
-import PortalBg from '../ui/PortalBg';
+import ModalPortal from '../ui/portal/ModalPortal';
+import PortalBg from '../ui/portal/PortalBg';
 import Contour from '../ui/Contour'
-import Pagination from '../Pagination/Pagination';
+import ButtonPagination from '../Pagination/ButtonPagination';
 
 
 
@@ -75,7 +75,7 @@ function AlertFormMain() {
                 </div>
               ))}
             </div>
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}></Pagination>
+            <ButtonPagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange}></ButtonPagination>
 
           </div>
         </div>

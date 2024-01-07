@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useContext } from 'react';
-import Margin from '../components/Margin.jsx';
-import DynamicColorButton from '../components/DynamicColorButton.jsx';
+import Margin from '../components/ui/Margin.jsx';
+import DynamicColorButton from '../components/ui/Button/DynamicColorButton.jsx';
 
 
 import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
@@ -12,9 +12,10 @@ import { checkRecruitApplication } from '../api/applyRecruit';
 import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
 import { AuthContext } from '../context/AuthContextProvider.jsx';
 
-import CommentList from '../components/CommentList.jsx';
+
 import Contour from '../components/ui/Contour.jsx';
 import { Link, useParams ,useNavigate} from 'react-router-dom';
+import CommentList from '../components/ui/Input/CommentList.jsx';
 
 
 function RecruitmentDetailPage() {

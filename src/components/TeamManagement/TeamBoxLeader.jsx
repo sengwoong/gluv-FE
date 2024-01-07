@@ -2,9 +2,10 @@ import React from 'react';
 
 import { applyToTeam, changeTeamLeader, kickTeamMember } from '../../api/team';
 
-import Margin from '../Margin';
-import DynamicColorButton from '../DynamicColorButton';
+
+import DynamicColorButton from '../ui/Button/DynamicColorButton';
 import crew from '../../assets/crew.png';
+import Margin from '../ui/Margin';
 
 
 

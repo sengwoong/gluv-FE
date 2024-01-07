@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Margin from '../Margin';
-import Contour from '../ui/Contour';
+import Margin from '../ui/Margin';
 
 function TeamManagementBackDesin({ children }) {
   return (

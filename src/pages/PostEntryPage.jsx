@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 import { FetchCreatePost } from '../api/post';
 
-import Margin from '../components/Margin';
-import DynamicColorButton from '../components/DynamicColorButton';
-import EditorComponent from '../components/ui/EditorComponent';
-import SelectButton from '../components/ui/SelectButton';
+import Margin from '../components/ui/Margin';
+import DynamicColorButton from '../components/ui/Button/DynamicColorButton';
+import EditorComponent from '../components/ui/Input/EditorComponent';
+import SelectButton from '../components/ui/Button/SelectButton';
 import { Link, useNavigate} from 'react-router-dom';
 
 function PostEntryPage() {

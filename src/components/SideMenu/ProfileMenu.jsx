@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { AuthContext } from '../context/AuthContextProvider.jsx';
+import { AuthContext } from '../../context/AuthContextProvider.jsx';
 
-import Margin from './Margin'
-import DynamicColorButton from './DynamicColorButton'
-import Contour from './ui/Contour'
+import Margin from '../ui/Margin.jsx'
+import DynamicColorButton from '../ui/Button/DynamicColorButton.jsx'
+import Contour from '../ui/Contour.jsx'
 import { Link } from 'react-router-dom'
 
-function LeftMenu() {
+function ProfileMenu() {
   // 사용되는 페이지 = /users/myteams/, /recruits/
   
 
@@ -97,4 +97,4 @@ function LeftMenu() {
   )
 }
 
-export default LeftMenu
+export default ProfileMenu

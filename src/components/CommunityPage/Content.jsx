@@ -8,7 +8,6 @@ import Margin from '../Margin';
 import DynamicColorButton from '../DynamicColorButton';
 import useWindowSize from '../../hooks/useWindowSzie';
 import Contour from '../ui/Contour';
-import TitleComponent from '../RecruitmentPage/TitleComponent'; // Adjust the path as needed
 import BulletinBoard from '../RecruitmentPage/BulletinBoard';
 
 import 'react-datepicker/dist/react-datepicker.css';
