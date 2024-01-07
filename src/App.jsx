@@ -23,7 +23,6 @@ import TeamDetailPage from './pages/TeamDetailPage.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
-import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import LeftMenu from "./components/LeftMenu.jsx"; // Import LeftMenu component
 import LeftMenu2 from "./components/LeftMenu2.jsx";
@@ -76,12 +75,10 @@ const pages = [
   // 메인 페이지
   { path: "/", component: Auth(MainPage), layoutType: "Non" },
 
-  // 공지사항 페이지 
-  { path: "/posts/notices/", component: Auth(PostListPage), layoutType: "Non" },
+// 공지사항 페이지 및 자유게시판(커뮤니티) 게시글 목록
+{ path: "/posts/notices/", component: Auth(PostListPage), layoutType: "Non" },
+{ path: "/posts/?", component: Auth(PostListPage), layoutType: "Non" },
 
-  // 자유게시판(커뮤니티) 게시글
-  // 게시글 목록
-  { path: "/posts/", component: Auth(PostListPage), layoutType: "Non" },
   // 게시글 작성 페이지
   { path: "/posts/create/", component: Auth(PostEntryPage), layoutType: "Non" },
   // 게시글 상세 페이지

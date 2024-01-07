@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { authService } from "./authService";
-
+import {jwtDecode} from 'jwt-decode';
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {

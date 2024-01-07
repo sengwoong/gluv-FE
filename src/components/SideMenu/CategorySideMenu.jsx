@@ -1,14 +1,8 @@
-import React, { useState, useContext } from 'react';
-
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
-
-function BottomMenu() {
-  const [expandedBoards, setExpandedBoards] = useState([]);
-
-  const boards = [
+/** 
+    아래와 비슷한 형식을 가진다.
     { id: 1, name: '공지사항', link: '/posts/notices/' },
-    { id: 2, name: '질문 게시판', link: '/posts/?category=qna/' },
     { id: 3, name: '자유게시판', link: '/posts/?category=comm/',
     
     subBoards: [ 
@@ -16,21 +10,18 @@ function BottomMenu() {
       { name : '소설', link : '/posts/?category=comm-novel/'}, 
       { name : '수필', link : '/posts/?category=comm-essay/'}]
     },
-    { id: 4, name: '창작게시판', link: '/posts/?category=creation/',
-    subBoards: [ 
-      { name : '시', link : '/posts/?category=creation-poem/'}, 
-      { name : '소설', link : '/posts/?category=creation-novel/'}, 
-      { name : '수필', link : '/posts/?category=creation-essay/'}]
-    },
-  ];
+ */
+function CategorySideMenu({boards}) {
+    const [expandedBoards, setExpandedBoards] = useState([]);
+    
+    const toggleSubBoards = (boardId) => {
+        if (expandedBoards.includes(boardId)) {
+          setExpandedBoards(expandedBoards.filter((id) => id !== boardId));
+        } else {
+          setExpandedBoards([...expandedBoards, boardId]);
+        }
+      };
 
-  const toggleSubBoards = (boardId) => {
-    if (expandedBoards.includes(boardId)) {
-      setExpandedBoards(expandedBoards.filter((id) => id !== boardId));
-    } else {
-      setExpandedBoards([...expandedBoards, boardId]);
-    }
-  };
 
   return (
     <div className="flex flex-col border m-2 p-2 rounded-md justify-items-center text-center">
@@ -63,7 +54,7 @@ function BottomMenu() {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default BottomMenu;
+export default CategorySideMenu

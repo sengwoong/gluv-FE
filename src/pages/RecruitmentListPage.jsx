@@ -2,15 +2,16 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import { FetchRecruitsPost } from '../api/recruits';
 
-import TitleComponent from '../components/PostListPage/TitleComponent';
+
 import Margin from '../components/Margin';
 import DynamicColorButton from '../components/DynamicColorButton';
 import Contour from '../components/ui/Contour';
 import RecruitmentList from '../components/RecruitmentList';
 import SelectButton from '../components/ui/SelectButton';
 import { Link } from 'react-router-dom';
-import TopMenu from '../components/PostListPage/TopMenu';
+import TopMenu from '../components/SideMenu/SelfBriefSideMenu';
 import HotRecruitmentList from '../components/HotRecruitmentList';
+import TitleComponent from '../components/RecruitListPage/TitleComponent';
 
 
 const sampleData = [

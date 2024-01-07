@@ -1,13 +1,13 @@
 import React from 'react'
 
-import TopMenu from './TopMenu'
-import BottomMenu from './BottomMenu'
+import SelfBriefSideMenu from '../SideMenu/SelfBriefSideMenu'
+import PostListSideBottomMenu from './PostListSideBottomMenu'
 
 function PostListLeftMenu() {
   return (
     <div className='flex flex-col'>
-    <div><TopMenu></TopMenu></div>
-    <div><BottomMenu></BottomMenu></div>
+    <div><SelfBriefSideMenu></SelfBriefSideMenu></div>
+    <div><PostListSideBottomMenu></PostListSideBottomMenu></div>
     </div>
   )
 }
