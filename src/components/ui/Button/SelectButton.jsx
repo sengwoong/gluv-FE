@@ -17,7 +17,6 @@ import { motion, useAnimation } from 'framer-motion';
 const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size,text_center }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(btnTitle);
-
   const options = btnoptions;
 
   const handleOptionClick = (option) => {
@@ -55,7 +54,7 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size,text_cen
           isOpen ? handleClose() : handleOpen();
         }}
       >
-        <span className="mr-2">{selectedOption}</span>
+        <span className="mr-2">{selectedOption || btnTitle}</span>
         {isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </motion.button>
 
@@ -63,18 +62,18 @@ const SelectButton = ({ btnTitle, btnoptions, onOptionSelect,title,size,text_cen
         <motion.div
           initial={{ opacity: 0 }}
           animate={containerControls}
-          className="absolute top-full mt-2 bg-white border inline-flex rounded-md shadow-md overflow-hidden whitespace-nowrap z-[1000]"
+          className="absolute top-full mt-2 bg-white border w-full inline-flex rounded-md shadow-md overflow-hidden whitespace-nowrap z-[1000]"
         >
           {isOpen && (
             <motion.div
               initial={{ y: -10, opacity: 0 }}
               animate={dropdownControls}
-              className="py-2"
+              className="py-2 w-full"
             >
               {options.map((option, index) => (
                 <div
                   key={index}
-                  className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                  className="px-4 py-2 cursor-pointer hover:bg-gray-100 w-full"
                   onClick={() => handleOptionClick(option)}
                   style={{ zIndex: 1000 }}
                 >

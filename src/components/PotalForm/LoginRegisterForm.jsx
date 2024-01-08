@@ -76,6 +76,7 @@ function LoginRegister() {
   const regions = [
     '서울', '경기', '충남', '충북' ,'강원' ,'경남', '경북', '제주', '전남' ,'전북'
   ];
+  
 
   return (
     <ModalPortal>
@@ -84,7 +85,7 @@ function LoginRegister() {
           <div className='bg-white p-6 rounded-md w-96 z-50'>
             <h2 className='text-2xl font-bold mb-4 z-50'>회원가입</h2>
             <div>
-              <div className=''>{error}</div>
+            
 
               <SelectButton
                 btnTitle={selectedRegion || '지역 선택'}
