@@ -71,9 +71,7 @@ function RecruitmentPostEntryPage() {
     setFormData((prevData) => ({ ...prevData, category: selectedCategory }));
   };
 
-  const handleRegionSelect = (region) => {
-    setFormData((prevData) => ({ ...prevData, region: region }));
-  };
+
 
   const handleFrequencySelect = (selectedValue, type) => {
     if (selectedValue === "주기없음") {
@@ -82,9 +80,7 @@ function RecruitmentPostEntryPage() {
     setFormData((prevData) => ({ ...prevData, [type]: selectedValue }));
   };
 
-  const regions = [
-    '서울', '경기', '충남', '충북', '강원', '경남', '경북', '제주', '전남', '전북'
-  ];
+  
 
   return (
     <div className="flex items-center justify-center bg-gray-100">

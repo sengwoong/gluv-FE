@@ -11,12 +11,12 @@ function SelectMenu() {
   return (
     <div className="flex">
       <Link to="/users/myteams/">
-        <div className={`text-2xl border-black cursor-pointer text-base ${isActive("/users/myteams/") ? "font-bold underline" : ""}`}>
+        <div className={`text-2xl border-black cursor-pointer file:${isActive("/users/myteams/") ? "font-bold underline" : ""}`}>
           활동중인 모임
         </div>
       </Link>
       <Link to="/users/myappliedteams/">
-        <div className={`text-2xl border-black cursor-pointer text-base ml-4 ${isActive("/users/myappliedteams/") ? "font-bold underline" : ""}`}>
+        <div className={`text-2xl border-black cursor-pointer ml-4 ${isActive("/users/myappliedteams/") ? "font-bold underline" : ""}`}>
           신청중인 모임
         </div>
       </Link>

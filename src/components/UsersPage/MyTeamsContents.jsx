@@ -5,74 +5,28 @@ import axios from "axios";
 import Contour from "../ui/Contour";
 import Margin from "../ui/Margin";
 import TeamBox from "../ui/Input/TeamBox";
+import NumberedPagination from "../Pagination/NumberedPagination";
+import { fetchTeamData } from "../../api/team";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);
-  const [nextPage, setNextPage] = useState([]);
-  const [prevPage, setPrevPage] = useState([]);
+  const [teamPage, setTeamPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const handlePageChange = async (pageUrl) => {
-    try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const accessToken = user?.access_token || "";
-      if (!accessToken) {
-        console.error("Access token not available");
-        return null;
-      }
-
-      // 페이지 이동 시 해당 페이지의 데이터를 요청
-      const response = await axios.get(pageUrl, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setTeamDataList(response.data.results);
-      // 페이지네이션 처리
-      if (response.data.next) setNextPage(response.data.next);
-      else setNextPage(null);
-      if (response.data.previous) setPrevPage(response.data.previous);
-      else setPrevPage(null);
-    } catch (error) {
-      console.error("Fetching data failed:", error.message);
-    }
-  };
-
+  
   useEffect(() => {
-    const fetchTeamData = async () => {
+    const TeamData = async () => {
       try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const accessToken = user?.access_token || "";
-        if (!accessToken) {
-          console.error("Access token not available");
-          return null;
-        }
-        const baseURL = import.meta.env.VITE_APP_API_KEY;
-
-        const response = await axios.get(
-          `${baseURL}/teams/myteams/`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-
-        setTeamDataList(response.data["results"]);
-        if (response.data["next"]) setNextPage(response.data["next"]);
-        else setNextPage(null);
-        if (response.data["previous"]) setPrevPage(response.data["previous"]);
-        else setPrevPage(null);
-
+        const response = await fetchTeamData({currentPage:currentPage})
+        setTeamDataList(response.results);
+        setTeamPage(response)
         return response.data;
       } catch (error) {
         console.error("Fetching data failed:", error.message);
         return null;
       }
     };
-    fetchTeamData();
-  }, []);
+    TeamData();
+  }, [currentPage]);
   return (
     <div>
       <div className="border p-2 flex flex-col rounded-md h-[520px]">
@@ -89,37 +43,7 @@ function MainContents() {
       <Contour />
       <Margin top="2" />
       <div className="flex justify-center items-center">
-        {/* 이전 페이지 링크 */}
-        {prevPage && (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              handlePageChange(prevPage);
-              setCurrentPage(currentPage - 1);
-            }}
-            className="cursor-pointer text-blue-500 hover:underline mr-2"
-          >
-            prev
-          </div>
-        )}
-
-        <div className="mr-2">{currentPage}</div>
-
-        {/* 다음 페이지 링크 */}
-        {nextPage && (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              handlePageChange(nextPage);
-              setCurrentPage(currentPage + 1);
-            }}
-            className="cursor-pointer text-blue-500 hover:underline"
-          >
-            next
-          </div>
-        )}
+       <NumberedPagination count={teamPage.count} currentPage={currentPage} setCurrentPage={setCurrentPage} maxNum={5}></NumberedPagination>
       </div>
     </div>
   );

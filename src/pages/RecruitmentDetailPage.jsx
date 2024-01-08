@@ -17,6 +17,8 @@ import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
 import { checkRecruitApplication, applyForRecruit, cancelRecruitApplication } from '../api/applyRecruit';
 import { AuthContext } from '../context/AuthContextProvider.jsx';
 import NumberedPagination from '../components/Pagination/NumberedPagination.jsx';
+import LikeButton from '../components/ui/Button/LikeButton.jsx';
+import ReportBtn from '../components/ui/Button/ReportBtn.jsx';
 
 function RecruitmentDetailPage() {
   const { id } = useParams();
@@ -155,9 +157,7 @@ function RecruitmentDetailPage() {
     }
   };
 
-  const ReportClick = async () => {
-     await submitReport({ user_id: data.author, content: `모집글${id}를 신고 당했습니다.` });
-  };
+ 
 
   const handleCommentClick = (commentUser) => {
     setSelectedCommentUser(commentUser);
@@ -249,29 +249,12 @@ function RecruitmentDetailPage() {
 
             <Margin top="2" />
             <div className="flex justify-center">
-              {isLiked ? (
-                <DynamicColorButton
-                  color="red"
-                  text="추천 취소"
-                  btnstyle="py-2 px-4 text-sm"
-                  onClick={handleUnlikeClick}
-                />
-              ) : (
-                <DynamicColorButton
-                  className={`py-2 px-4 text-sm`}
-                  onClick={handleLikeClick}
-                  text="추천"
-                  color="blue"
-                ></DynamicColorButton>
-              )}
-
+            <LikeButton isLiked={isLiked} setIsLiked={setIsLiked}   handleLikeClick={handleLikeClick} handleUnlikeClick={handleUnlikeClick} ></LikeButton>
+            
               <Margin left="4" />
-              <DynamicColorButton
-                color="red"
-                text="신고"
-                btnstyle="py-2 px-4 mr-2"
-                onClick={ReportClick}
-              />
+          
+               <ReportBtn author={data.author} id={id}></ReportBtn>
+
             </div>
 
             <Margin top="4" />

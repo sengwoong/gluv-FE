@@ -87,7 +87,7 @@ function RecruitmentListPage() {
   };
 
   const handlePageClick = (page) => {
-    setCurrentPage(page+1);
+    setCurrentPage(page);
   };
 
   const handleSearchClick = () => {
@@ -197,6 +197,7 @@ function RecruitmentListPage() {
                 onOptionSelect={handleSortSelect}
               />
             </div>
+            <Margin top="2" plustailwind="h-4" />
             <div className="border p-2 rounded-md">
               <RecruitmentList data={teamData ? teamData : sampleData} />
             </div>

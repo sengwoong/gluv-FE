@@ -139,7 +139,34 @@ export const applyToTeam = async ({id,userId}) => {
 
 
 
+export const fetchTeamData = async ({currentPage}) => {
+  console.log(currentPage)
+  try {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const accessToken = user?.access_token || "";
+    if (!accessToken) {
+      console.error("Access token not available");
+      return null;
+    }
+    const baseURL = import.meta.env.VITE_APP_API_KEY;
 
+    const response = await axios.get(
+      `${baseURL}/teams/myteams/?page=${currentPage}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+  
+ 
+
+    return response.data;
+  } catch (error) {
+    console.error("Fetching data failed:", error.message);
+    return null;
+  }
+};
 
 
 
