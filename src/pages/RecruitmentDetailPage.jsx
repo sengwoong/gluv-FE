@@ -1,190 +1,141 @@
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import Margin from '../components/ui/Margin.jsx';
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton.jsx';
-
-
-import { FetchDelectRecruits, FetchRecruits } from '../api/recruits.js';
+import Contour from '../components/ui/Contour.jsx';
+import CommentList from '../components/ui/Input/CommentList.jsx';
+import InfoItem from '../components/ui/Input/InfoItem.jsx';
+import { NowformatDate, formatDate } from '../components/Data/datacalcul.js';
+import {
+  FetchDelectRecruits,
+  FetchRecruits,
+} from '../api/recruits.js';
 import { FetchAllReqCommentsData, FetchCreateComments } from '../api/comment.js';
 import { FetchTeam } from '../api/team.js';
 import { submitReport } from '../api/report.js';
 import { checkIfReLike, likeRecruit, unlikeRecruit } from '../api/likes.js';
-import { checkRecruitApplication } from '../api/applyRecruit';
-import { applyForRecruit ,cancelRecruitApplication} from '../api/applyRecruit';
+import { checkRecruitApplication, applyForRecruit, cancelRecruitApplication } from '../api/applyRecruit';
 import { AuthContext } from '../context/AuthContextProvider.jsx';
-
-
-import Contour from '../components/ui/Contour.jsx';
-import { Link, useParams ,useNavigate} from 'react-router-dom';
-import CommentList from '../components/ui/Input/CommentList.jsx';
-
+import NumberedPagination from '../components/Pagination/NumberedPagination.jsx';
 
 function RecruitmentDetailPage() {
-
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
+
   const [data, setData] = useState(null);
   const [teamData, setTeamData] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
-  const [comments, setComments] = useState([
-    { user: '@사용자ㄷㄷㄷㄷ', content: 'ㄴㄴㄴㄴ 님 안녕하세요' },
-    // Add other comments as needed
-  ]);
+  const [comments, setComments] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  
   const [inserComment, setInserComment] = useState('');
   const [AmIRecruit, setAmIRecruit] = useState('');
   const [AmIRecruitChange, setAmIRecruitChange] = useState(1);
-  const [TeamID, setTeamID] = useState(0);
   const [cachedData, setCachedData] = useState(false);
- 
-  const { getUserInfo } = useContext(AuthContext);
- const [selectedCommentUser, setSelectedCommentUser] = useState({id:'',nickname:''});
+  const [selectedCommentUser, setSelectedCommentUser] = useState({ id: '', nickname: '' });
 
   const handleInputChange = (event) => {
     setInserComment(event.target.value);
   };
-  const postId = id
 
+  const postId = id;
 
-  const navigate = useNavigate();
   useEffect(() => {
-  const RecruitApplication = async () => {
-    console.log("inRecruitApplication")
-    try {
-      const IRecruit = await checkRecruitApplication(id );
-      setAmIRecruit((prev) => ({
+    const RecruitApplication = async () => {
+      try {
+        const IRecruit = await checkRecruitApplication(id);
+        setAmIRecruit({ IRecruit });
+      } catch (error) {
+        console.error('Error fetching post data:', error);
+      }
+    };
+    RecruitApplication();
+  }, [AmIRecruitChange]);
 
-        IRecruit,
-      }));
-
-    } catch (error) {
-      console.error('Error fetching post data:', error);
-    }
-
-  };
-  RecruitApplication()
-}, [AmIRecruitChange]);
   useEffect(() => {
     const checkLike = async () => {
       const liked = await checkIfReLike(id);
-      setIsLiked(liked)
+      setIsLiked(liked);
     };
-    checkLike()
+    checkLike();
   }, [isLiked]);
-
-
 
   useEffect(() => {
     const getPost = async () => {
       try {
         const postData = await FetchRecruits({ id });
-   
-        setData((prev) => ({
-        
-          ...postData,
-        }));
+        setData((prev) => ({ ...prev, ...postData }));
       } catch (error) {
         console.error('Error fetching post data:', error);
       }
     };
 
-   
-
-  
- 
-    commentFetch()
+    commentFetch();
     getPost();
 
-    setAmIRecruitChange((prev)=>prev+1)
-    setTeamID((prev)=>{prev+1})
-  }, []);
-  
-
+    setAmIRecruitChange((prev) => prev + 1);
+  }, [currentPage]);
 
   useEffect(() => {
     const getTeam = async (teamId) => {
       try {
-        if(cachedData === false){
-        const teamData = await FetchTeam({ id: teamId });
-      
-  
-        setData((prev) => ({
-          ...prev,
-          ...teamData,
-        }));
-        
-        setCachedData(true)
-      
-      }
+        if (!cachedData) {
+          const teamData = await FetchTeam({ id: teamId });
+          setData((prev) => ({ ...prev, ...teamData }));
+          setCachedData(true);
+        }
       } catch (error) {
         console.error('Error fetching team data:', error);
       }
     };
-  
+
     if (data !== null) {
       const teamId = data.team;
-  
-      // Ensure teamId is valid (not null or undefined) before calling getTeam
+
       if (teamId) {
-    
         getTeam(teamId);
       }
     }
-  
-  }, [data]); // Re-run the effect whenever data changes
-  
+  }, [data]);
 
- 
-
-  const AmIReClikc=()=>{
-    setAmIRecruitChange((prev)=>prev+1)
-console.log(AmIRecruit)
-
-    const isUserInArray = AmIRecruit.IRecruit.some(item => item.user = 2);
-
-    let a = isUserInArray ? "신청중입니다": "신청 상태가 없는 상태 입니다" ;
-
-    alert( a)
-
-    
-  }
-
- const RecruitBtn=async()=>{
-   await applyForRecruit(id)
-   setAmIRecruitChange((prev)=>prev+1)
-  }
-  const UnRecruitBtn=async()=>{
-    
-    await cancelRecruitApplication(id)
-    setAmIRecruitChange((prev)=>prev+1)
-  }
-
- const RecruitDelectBtn=async()=>{
-  try{
-
-    await FetchDelectRecruits({id})
-    navigate('/recruits')
-  }catch{
-
-  }
-
-}
-
-const gotoListBtn = () => {
-  
-  navigate('/recruits')
-};
-  
-  
-  const handlePageClick = (page) => {
-    setCurrentPage(page+1);
+  const AmIReClikc = () => {
+    setAmIRecruitChange((prev) => prev + 1);
+    const isUserInArray = AmIRecruit.IRecruit.some((item) => item.user === user.id);
+    let alertMessage = isUserInArray ? '신청중입니다' : '신청 상태가 없는 상태 입니다';
+    alert(alertMessage);
   };
 
-  const commentFetch =async()=>{
-    let a = await FetchAllReqCommentsData({id:id,page:currentPage}); // 하드코드
-    setComments({a})
-  }
+  const RecruitBtn = async () => {
+    await applyForRecruit(id);
+    setAmIRecruitChange((prev) => prev + 1);
+  };
 
+  const UnRecruitBtn = async () => {
+    await cancelRecruitApplication(id);
+    setAmIRecruitChange((prev) => prev + 1);
+  };
 
+  const RecruitDelectBtn = async () => {
+    try {
+      await FetchDelectRecruits({ id });
+      navigate('/recruits');
+    } catch (error) {
+      console.error('Error deleting recruit:', error);
+    }
+  };
+
+  const gotoListBtn = () => {
+    navigate('/recruits');
+  };
+
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+  };
+
+  const commentFetch = async () => {
+    const commentsData = await FetchAllReqCommentsData({ id: id, page: currentPage });
+    setComments(commentsData);
+  };
 
   const handleLikeClick = async () => {
     try {
@@ -202,141 +153,117 @@ const gotoListBtn = () => {
     } catch (error) {
       console.error('Error unliking the post:', error);
     }
-
   };
-  const ReportClick = async()=>{
- 
-    let a=await submitReport({user_id:data.author,content:`모집글${id}를 신고 당했습니다.`})
 
-  }
+  const ReportClick = async () => {
+     await submitReport({ user_id: data.author, content: `모집글${id}를 신고 당했습니다.` });
+  };
 
-
- 
-  // Define the click handler
   const handleCommentClick = (commentUser) => {
-
-    // Set the selected comment user using the state setter
     setSelectedCommentUser(commentUser);
   };
 
+  const CreatComment = async () => {
+    try {
+      await FetchCreateComments({
+        recruits: id,
+        content: inserComment,
+        to_user: selectedCommentUser.id || '',
+      });
 
-
-const CreatComment = async (e) => {
-
-  
-  try {
-    await FetchCreateComments({
-      recruits: id,
-      content: inserComment,
-      to_user: selectedCommentUser.id || ''
-    });
-    await commentFetch(); // Fetch and update comments after creating a new comment
-  } catch (error) {
-    console.error('Error creating comment:', error);
-  }
-};
-
-
-
-
-
+    } catch (error) {
+      console.error('Error creating comment:', error);
+    }
+  };
 
   if (!data) {
-    // You can render a loading spinner or message here
     return <div>Loading...</div>;
   }
 
   return (
     <div className="flex items-center justify-center">
-      <div className='w-[80vw] rounded-md  p-6'>
-        <div className='flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center'>
+      <div className="w-[80vw] rounded-md p-6">
+        <div className="flex items-center justify-center w-[60px] h-[30px] bg-gray-200 text-sm font-roboto rounded-md text-center">
           {data.category}
         </div>
 
         <Margin top="1" />
-        <div className='w-full'>
-
+        <div className="w-full">
           <div>
-            <div className='text-2xl font-bold'>{data.title}</div>
-
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
-                 <img
-                src={data.author_info.profile_image}
-                alt="프로필 사진"
-                className="w-8 h-8 rounded-full mr-2"
-              />
-                   <div className='font-bold text-lg'>{data.author_info.nickname}</div>
-                <Margin left="1"  plustailwind="w-3" />
-                <div className='text-sm  text-gray-600 '>{NowformatDate(data.created_at)}</div>
+            <div className="text-2xl font-bold">{data.title}</div>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <img
+                  src={data.author_info.profile_image}
+                  alt="프로필 사진"
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+                <div className="font-bold text-lg">{data.author_info.nickname}</div>
+                <Margin left="1" plustailwind="w-3" />
+                <div className="text-sm text-gray-600 ">{NowformatDate(data.created_at)}</div>
               </div>
-              <div className='flex flex-col items-center p-2'>
-                <div className='flex'>
-                  <div className='text-sm '>좋아요:</div>
-                  <div className='text-sm '>{data.likes}</div>
+              <div className="flex flex-col items-center p-2">
+                <div className="flex">
+                  <div className="text-sm ">좋아요:</div>
+                  <div className="text-sm ">{data.likes}</div>
                 </div>
-                <div className='flex'>
-                  <div className='text-sm '>조회수:</div>
-                  <div className='text-sm '>{data.view_count}</div>
+                <div className="flex">
+                  <div className="text-sm ">조회수:</div>
+                  <div className="text-sm ">{data.view_count}</div>
                 </div>
               </div>
             </div>
 
             <Contour />
-            
-            <div className='flex items-center justify-between'>
-              <div className='flex items-center'>
-                <div className='grid grid-cols-2 gap-3'>
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="grid grid-cols-2 gap-3">
                   <InfoItem title="카테고리" content={data.category} />
                   <InfoItem title="지역" content={data.region} />
                   <InfoItem title="최대인원" content={data.max_attendance} />
                   <InfoItem title="현재인원" content={data.current_attendance} />
                 </div>
               </div>
-              <div className='flex flex-col items-center p-2'>
-                <div className='flex'>
-                  <div className='text-sm '>작성일:</div>
-                  <div className='text-sm '>{formatDate(data.created_at)}</div>
+              <div className="flex flex-col items-center p-2">
+                <div className="flex">
+                  <div className="text-sm ">작성일:</div>
+                  <div className="text-sm ">{formatDate(data.created_at)}</div>
                 </div>
-                <div className='flex'>
-                  <div className='text-sm '>수정일:</div>
-                  <div className='text-sm '>{formatDate(data.updated_at)}</div>
+                <div className="flex">
+                  <div className="text-sm ">수정일:</div>
+                  <div className="text-sm ">{formatDate(data.updated_at)}</div>
                 </div>
               </div>
             </div>
-            
+
             <Contour />
 
             <Margin top="4" />
-            <div className='text-xl w-ful border-black font-bold mb-4'>
-         
+            <div className="text-xl w-ful border-black font-bold mb-4"></div>
+
+            <Margin top="3" plustailwind="h-3 w-1" />
+            <div className="border p-2 w-full min-h-[400px] overflow-scroll rounded-md">
+              <div dangerouslySetInnerHTML={{ __html: data.content }} />
             </div>
-            
-            <Margin top="3" plustailwind="h-3 w-1"  />
-            <div className='border p-2 w-full min-h-[400px]  overflow-scroll rounded-md'>
-            <div dangerouslySetInnerHTML={{ __html: data.content }} />
-            </div>
-            
+
             <Margin top="2" />
-            <div className='flex justify-center'>
-            {isLiked ? (
-                   <DynamicColorButton
-                   color="red"
-                   text="추천 취소"
-                   btnstyle="py-2 px-4 text-sm"
-                   onClick={handleUnlikeClick}
-                 />
-      
-      ) : (
-        <DynamicColorButton
-        className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
-        onClick={handleLikeClick}
-        text="추천"
-        color="blue"
-      >
-      
-      </DynamicColorButton>
-      )}
+            <div className="flex justify-center">
+              {isLiked ? (
+                <DynamicColorButton
+                  color="red"
+                  text="추천 취소"
+                  btnstyle="py-2 px-4 text-sm"
+                  onClick={handleUnlikeClick}
+                />
+              ) : (
+                <DynamicColorButton
+                  className={`py-2 px-4 text-sm`}
+                  onClick={handleLikeClick}
+                  text="추천"
+                  color="blue"
+                ></DynamicColorButton>
+              )}
 
               <Margin left="4" />
               <DynamicColorButton
@@ -348,20 +275,15 @@ const CreatComment = async (e) => {
             </div>
 
             <Margin top="4" />
-            <div className={`w-full border p-4 flex  justify-between items-start`}>
-              <div className='flex'>
-              
-              <DynamicColorButton
-    color="blue"
-    text="신청확인"
-    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-    onClick={AmIReClikc}
-  /> 
-
-
-                <Margin left="1" />
-           
-                <Margin left="1" />
+            <div className={`w-full border p-4 flex justify-between items-start`}>
+              <div className="flex">
+                <DynamicColorButton
+                  color="blue"
+                  text="신청확인"
+                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                  onClick={AmIReClikc}
+                />
+                <Margin left="2" />
                 <DynamicColorButton
                   color="red"
                   text="삭제하기"
@@ -369,118 +291,61 @@ const CreatComment = async (e) => {
                   onClick={RecruitDelectBtn}
                 />
               </div>
-             
-              <div className='flex flex-wrap'>
-              <DynamicColorButton
-    color="blue"
-    text="신청하기"
-    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-    onClick={RecruitBtn}
-  /> 
-  
-  <DynamicColorButton
-    color="blue"
-    text="신청해제"
-    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-    onClick={UnRecruitBtn}
-  />
+
+              <div className="flex flex-wrap">
+                <DynamicColorButton
+                  color="blue"
+                  text="신청하기"
+                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                  onClick={RecruitBtn}
+                />
+                <DynamicColorButton
+                  color="blue"
+                  text="신청해제"
+                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                  onClick={UnRecruitBtn}
+                />
                 <Margin left="1" />
                 <Link to="/recruits">
-              
-                <DynamicColorButton
-                  text="목록으로"
-                  btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
-                  onClick={gotoListBtn}
-                />
+                  <DynamicColorButton
+                    text="목록으로"
+                    btnstyle="py-1 px-2 ml-0 items-end flex-shrink-0"
+                    onClick={gotoListBtn}
+                  />
                 </Link>
               </div>
             </div>
 
-            <div>
-            {selectedCommentUser? selectedCommentUser.nickname +"님을 선택을 하였습니다":""}
-              <Margin top="4" />
-              <div className='text-2xl font-bold mb-4'>댓글</div>
-              
-              <div className='flex items-center justify-center'>
+            <div>{selectedCommentUser ? selectedCommentUser.nickname + '님을 선택을 하였습니다' : ''}</div>
+            <Margin top="4" />
+            <div className="text-2xl font-bold mb-4">댓글</div>
+
+            <div className="flex items-center justify-center">
               <input
-        className='border p-2 w-3/4 rounded-md'
-        placeholder='댓글 입력...'
-        value={inserComment}
-        onChange={handleInputChange}
-      />
-                <DynamicColorButton
-                  color="black"
-                  text="댓글 달기"
-                  btnstyle="py-2 px-2 ml-2"
-                  onClick={CreatComment}
-                />
-              </div>
-            </div>
-            
-            <div className='flex justify-between items-center'>
-            <CommentList comments={comments} onCommentClick={handleCommentClick} />
-    
+                className="border p-2 w-3/4 rounded-md"
+                placeholder="댓글 입력..."
+                value={inserComment}
+                onChange={handleInputChange}
+              />
+              <DynamicColorButton
+                color="black"
+                text="댓글 달기"
+                btnstyle="py-2 px-2 ml-2"
+                onClick={CreatComment}
+              />
             </div>
           </div>
+          <CommentList comments={comments} onCommentClick={handleCommentClick} />
+          <div className="flex w-full justify-center items-center">
+            
+          <NumberedPagination count={comments.count} currentPage={currentPage} setCurrentPage={handlePageClick} maxNum={5}></NumberedPagination>
 
-          <div className='flex w-full justify-center items-center'>
-              {Array.from({ length: Math.ceil(comments.a ? comments.a.count / 5 : 1) }, (_, index) => (
-    <span
-      key={index}
-      className={`cursor-pointer mx-1  text-center ${currentPage === index + 1 ? 'font-bold' : ''}`}
-      onClick={() => handlePageClick(index )}
-    >{index+1}</span>
-              ))}
-              </div>
+       
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-// Example of a reusable InfoItem component
-const InfoItem = ({ title, content }) => (
-  <div className='flex justify-start items-center'>
-    <div className='font-bold text-lg'>{title}</div>
-    <Margin left="1"  plustailwind='w-3' />
-    <div className='text-sm  text-gray-600'>{content}</div>
-  </div>
-);
-
-// Example of a utility function to format date
-const formatDate = (dateString) => {
-  if (!dateString) return ''; // Handle the case when dateString is undefined or null
-
-  // Extract only the date part (YYYY-MM-DD)
-  const formattedDate = dateString.substring(0, 10);
-
-  return formattedDate;
-};
-
-// Example of a utility function to format date
-const NowformatDate = (dateString) => {
-  if (!dateString) return ''; // Handle the case when dateString is undefined or null
-
-  // Extract only the date part (YYYY-MM-DD)
-  const formattedDate = dateString.substring(0, 10);
-
-  // Get the current date in the same format
-  const currentDate = new Date().toISOString().substring(0, 10);
-
-  // Compare the extracted date with the current date
-  if (formattedDate === currentDate) {
-    return '오늘';
-  } else {
-    // Calculate the difference in days
-    const date1 = new Date(formattedDate);
-    const date2 = new Date(currentDate);
-    const timeDifference = date1.getTime() - date2.getTime();
-    const daysDifference = timeDifference / (1000 * 3600 * 24);
-
-    return `${daysDifference}일 전`;
-  }
-};
-
-
 
 export default RecruitmentDetailPage;

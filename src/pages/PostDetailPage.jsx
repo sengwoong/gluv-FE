@@ -11,7 +11,7 @@ import CommentList from '../components/ui/Input/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
-import DeleteButton from '../components/ui/Button/DelectButton.jsx';
+
 import ReportBtn from '../components/ui/Button/ReportBtn.jsx';
 import LikeButton from '../components/ui/Button/LikeButton.jsx';
 import InfoItem from '../components/ui/Input/InfoItem.jsx';
@@ -32,7 +32,7 @@ function PostDetailPage() {
   const [isAuthor, setIsAuthor] = useState(false);
 
   const postId = id;
-
+  const navigate = useNavigate();
   const getPost = async () => {
     try {
       const postData = await FetchPostData({ id });
@@ -76,7 +76,39 @@ function PostDetailPage() {
     }
   }
 
- 
+  const handleLikeClick = async () => {
+    try {
+      await likePost(postId);
+      setIsLiked(true);
+    } catch (error) {
+      console.error('Error liking the post:', error);
+    }
+  };
+
+  const handleUnlikeClick = async () => {
+    try {
+      await unlikePost(postId);
+      setIsLiked(false);
+    } catch (error) {
+      console.error('Error unliking the post:', error);
+    }
+
+  };
+
+  const deletePost = async () => {
+    try {
+      const postData = await FetchDelete({ id });
+      setData(postData);
+    } catch (error) {
+      console.error('Error fetching post data:', error);
+    }
+  };
+
+  const deleteClick = async () => {
+    await deletePost()
+    navigate('/posts/notices/');
+  };
+
 
   if (!data) {
     return <div>Loading...</div>;
@@ -144,12 +176,17 @@ function PostDetailPage() {
             <Margin top="4" />
             <div className={`w-full border p-4 flex`}>
               <div className='flex w-1/2'>
-                <LikeButton isLiked={isLiked} setIsLiked={setIsLiked}></LikeButton>
+                <LikeButton isLiked={isLiked} setIsLiked={setIsLiked}   handleLikeClick={handleLikeClick} handleUnlikeClick={handleUnlikeClick} ></LikeButton>
                 <ReportBtn author={data.author} id={id}></ReportBtn>
               </div>
               <div className='flex w-1/2 justify-end '>
                 <div className='ml-auto'>
-                  <DeleteButton id={id} type={"post"}></DeleteButton>
+                <DynamicColorButton
+                  color="red"
+                  text="삭제하기"
+                  onClick={deleteClick}
+                  btnstyle="py-1 px-2 flex-shrink-0"
+                />
                 </div>
                 <Margin left="2" />
                 <Link to="/posts/notices/">

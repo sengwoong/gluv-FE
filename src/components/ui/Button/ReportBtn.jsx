@@ -5,8 +5,8 @@ import { submitReport } from '../../../api/report'
 function ReportBtn({author,id,type}) {
     const ReportClick = async()=>{
 
-        let a=await submitReport({user_id:author,content:`포스트${id}를 신고했습니다.`})
-    
+    const alertMessage  =await submitReport({user_id:author,content:`포스트${id}를 신고했습니다.`})
+    alert(alertMessage.message)
       }
 
   return (

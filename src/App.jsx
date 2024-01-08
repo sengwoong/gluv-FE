@@ -20,7 +20,7 @@ import NotFound from './pages/NotFound.jsx';
 import ProfileEditPage from './pages/ProfileEditPage.jsx';
 import Chatting from './pages/Chatting.jsx';
 import RecruitPostEditPage from './pages/RecruitPostEditPage.jsx';
-
+import ProfileMenu from './components/SideMenu/ProfileMenu.jsx'
 
 import Auth from "./Auth.jsx";
 import Navbar from "./components/ui/Navbar.jsx";
