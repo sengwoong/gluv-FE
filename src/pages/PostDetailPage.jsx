@@ -179,7 +179,7 @@ function PostDetailPage() {
               <CommentList comments={comments} onCommentClick={handleCommentClick} />
             </div>
           </div>
-          <NumberedPagination comments={comments} currentPage={currentPage} setCurrentPage={setCurrentPage}></NumberedPagination>
+          <NumberedPagination count={comments.count} currentPage={currentPage} setCurrentPage={setCurrentPage} maxNum={5}></NumberedPagination>
         </div>
       </div>
     </div>

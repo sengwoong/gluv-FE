@@ -34,7 +34,7 @@ function TopMenu() {
   }, []);
 
   return (
-    <div className="w-72 h-full flex justify-center items-center">
+    <div className="w-72  flex justify-center items-center">
       <div className="mt-12 w-[25vw] mx-4 border-[1px] rounded-lg border-black flex flex-col text-center">
 
         {/* 상단 여백 적용 */}

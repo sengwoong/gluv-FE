@@ -11,10 +11,12 @@ import SelectButton from '../components/ui/Button/SelectButton';
 import { Link } from 'react-router-dom';
 import TopMenu from '../components/SideMenu/SelfBriefSideMenu';
 
-import TitleComponent from '../components/RecruitListPage/TitleComponent';
+import TitleComponent from '../components/ui/Input/TitleComponent';
 import Margin from '../components/ui/Margin';
 import RecruitmentList from '../components/ui/Input/RecruitmentList';
 import HotRecruitmentList from '../components/SideMenu/HotRecruitmentList';
+import RecruitmentListLeftMenu from '../components/RecruitListPage/RecruitmentListLeftMenu';
+import NumberedPagination from '../components/Pagination/NumberedPagination';
 
 
 const sampleData = [
@@ -33,14 +35,29 @@ function RecruitmentListPage() {
 
 
   const [teamData, setTeamData] = useState([]);
-  const [recruitsData, setRecruitsData] = useState([]);
   const [filters, setFilters] = useState({
     page: 1,
     search: '',
-
-    
+    category:'전체'
   });
   const [Count, setCount] = useState(1);
+
+  const fetchData = async () => {
+    try {
+      const data = await FetchRecruitsPost({ ...filters, page: currentPage });
+      // const RecruitsData = await FetchRecruitsPost({...filters, page: currentPage })
+  
+      if (data) {
+       
+        setTeamData(data.results);
+        setCount(data.count);
+        // setTotalPages(data.total_pages);
+      }
+  
+    } catch (error) {
+      console.error('Error fetching team data:', error.message);
+    }
+  };
 
   
   const handleRegionSelect = (selectedRegion) => {
@@ -70,53 +87,28 @@ function RecruitmentListPage() {
   };
 
   const handlePageClick = (page) => {
-    setCurrentPage(page);
+    setCurrentPage(page+1);
   };
 
   const handleSearchClick = () => {
     setFilters({ ...filters, search: event.target.value });
+    fetchData();
   };
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await FetchRecruitsPost({ ...filters, page: currentPage });
-        // const RecruitsData = await FetchRecruitsPost({...filters, page: currentPage })
     
-        if (data) {
-         
-          setTeamData(data.results);
-          setCount(data.count);
-          // setTotalPages(data.total_pages);
-        }
-    
-      } catch (error) {
-        console.error('Error fetching team data:', error.message);
-      }
-    };
-
-console.log(Count)
+    console.log("outCount")
+    console.log("outCount")
     fetchData();
-  }, [filters, currentPage]);
+  }, [filters.page,filters.category,filters.order,filters.order_by,filters.region, currentPage]);
 
-  const inputClasses = {
-    xl: 'w-2/3',
-    xxl: 'w-2/3',
-    lg: 'w-1/2',
-    md: 'w-2/3',
-    sm: 'w-1/2',
-  };
 
-  const combinedClasses = Object.entries(inputClasses)
-    .map(([size, classValue]) => (false === size ? classValue : ''))
-    .join(' ');
  
   return (
     <div className='flex'>
-      <div className='flex flex-col items-center justify-around '>
-      <TopMenu />
-      <HotRecruitmentList />
-    </div>
-      
+      <div className='flex flex-col  items-center  '>
+        <RecruitmentListLeftMenu></RecruitmentListLeftMenu>
+      </div>
+    
     <div className="flex items-center justify-center bg-gray-100">
       <div className="w-[65vw] bg-white rounded-md shadow-md p-6">
         <div className="w-full">
@@ -167,6 +159,7 @@ console.log(Count)
             <SelectButton
                 btnTitle="region"
                 btnoptions={[
+                  '지역 무관',
                   '서울',
                   '경기',
                   '강원',
@@ -213,7 +206,7 @@ console.log(Count)
               <div className={`flex items-center text-center ${false === 'sm' ? 'justify-start' : 'justify-center'}`}>
               
                 <input
-                  className={`border p-2 rounded-md ${combinedClasses}`}
+                  className={`border p-2 rounded-md `}
                   placeholder='검색 입력...'
                   value={filters.search}
                   onChange={handleSearchChange}
@@ -240,16 +233,9 @@ console.log(Count)
              
 
               <div className="flex justify-center items-center w-full text-center">
-  {Array.from({ length: Math.ceil(Count ? Count / 6 : 1) }, (_, index) => (
-    <span
-      key={index}
-      className={`cursor-pointer mx-1  text-center ${currentPage === index + 1 ? 'font-bold' : ''}`}
-      onClick={() => handlePageClick(index + 1)}
-    >
-      {index + 1}
-    </span>
-  ))}
-</div>
+                <NumberedPagination count={Count} currentPage={ currentPage} setCurrentPage={handlePageClick} maxNum={6} ></NumberedPagination>
+  
+              </div>
 
 
               </div>

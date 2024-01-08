@@ -2,6 +2,10 @@ import React from 'react';
 import Margin from '../Margin';
 
 const CommentList = ({ comments, onCommentClick }) => {
+
+  console.log(comments)
+  console.log(comments)
+  console.log(comments)
   return (
     <div className='w-full mt-4'>
       {comments && comments.results && comments.results.length > 0 ? (

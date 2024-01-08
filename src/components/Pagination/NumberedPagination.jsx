@@ -1,8 +1,10 @@
+// NumberedPagination.jsx
 import React from 'react';
 
-function NumberedPagination({ comments, currentPage, setCurrentPage }) {
-  const totalPages = Math.ceil(comments ? comments.count / 5 : 1);
-
+function NumberedPagination({ count, currentPage, setCurrentPage ,maxNum}) {
+  const totalPages = Math.ceil(count / maxNum);
+  console.log("incount")
+console.log(count)
   const handlePageClick = (page) => {
     setCurrentPage(page + 1);
   };

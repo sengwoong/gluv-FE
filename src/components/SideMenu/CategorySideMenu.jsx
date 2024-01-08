@@ -24,7 +24,7 @@ function CategorySideMenu({boards}) {
 
 
   return (
-    <div className="flex flex-col border m-2 p-2 rounded-md justify-items-center text-center">
+    <div className="flex flex-col border  rounded-md justify-items-center text-center">
       {boards.map((board) => (
         <div key={board.id} className="mb-2 p-2 border">
           {
