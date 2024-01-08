@@ -9,20 +9,20 @@ const LikeButton = ({ isLiked,handleLikeClick,handleUnlikeClick}) => {
   return (
     <div>
       {isLiked ? (
+      
+<DynamicColorButton
+        className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
+        onClick={handleUnlikeClick}
+        text="좋아요 취소"
+        color="red"
+      />
+     
+      ) : (
         <DynamicColorButton
         color="blue"
         text="좋아요"
         btnstyle="py-2 px-4"
-        onClick={handleUnlikeClick}
-      />
-
-     
-      ) : (
-        <DynamicColorButton
-        className={`py-2 px-4 text-sm`} // Apply text-sm class for smaller text
         onClick={handleLikeClick}
-        text="좋아요 취소"
-        color="red"
       />
       )}
     </div>

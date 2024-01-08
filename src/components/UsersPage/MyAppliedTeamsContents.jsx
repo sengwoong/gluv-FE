@@ -1,121 +1,62 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
-
-
-import Contour from "../ui/Contour";
-
 import { Link } from "react-router-dom";
-import { Request } from "../../api/api";
+import Contour from "../ui/Contour";
 import TeamBox from "../ui/list/TeamBox";
 import Margin from "../ui/Margin";
+import NumberedPagination from "../Pagination/NumberedPagination";
+import { fetchMyAppliedTeamData } from "../../api/team";
 
 function MainContents() {
   const [teamDataList, setTeamDataList] = useState([]);
-  const [nextPage, setNextPage] = useState([]);
-  const [prevPage, setPrevPage] = useState([]);
+  const [teamPage, setTeamPage] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const baseURL = import.meta.env.VITE_APP_API_KEY;
-
-  const handlePageChange = async (pageUrl) => {
-    try {
-      const user = JSON.parse(localStorage.getItem("user"));
-      const accessToken = user?.access_token || "";
-      if (!accessToken) {
-        console.error("Access token not available");
-        return null;
-      }
-
-      // 페이지 이동 시 해당 페이지의 데이터를 요청
-      const response = await axios.get(pageUrl, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setTeamDataList(response.data.results);
-      // 페이지네이션 처리
-      if (response.data.next) setNextPage(response.data.next);
-      else setNextPage(null);
-      if (response.data.previous) setPrevPage(response.data.previous);
-      else setPrevPage(null);
-    } catch (error) {
-      console.error("Fetching data failed:", error.message);
-    }
-  };
 
   useEffect(() => {
-    const fetchTeamData = async () => {
+    const fetchData = async () => {
       try {
-
-        const response = await Request('get', `${baseURL}/teams/myappliedteams/`, {}, {}, {})
+        const response = await fetchMyAppliedTeamData({ currentPage });
         setTeamDataList(response.results);
-
-        if (response.data["next"]) setNextPage(response.data["next"]);
-        else setNextPage(null);
-        if (response.data["previous"]) setPrevPage(response.data["previous"]);
-        else setPrevPage(null);
-
-        return response.data;
+        setTeamPage(response);
       } catch (error) {
-        console.error("Fetching notice failed:", error.message);
-        return null;
+        console.error("Fetching data failed:", error.message);
       }
     };
-    fetchTeamData();
-  
-  }, []);
+    console.log("teamDataList")
+    console.log(teamDataList)
+    console.log(teamDataList)
+    fetchData();
+  }, [currentPage]);
+
   return (
     <div>
       <div className="border p-2 flex flex-col rounded-md h-[520px]">
         <div className="m-8 ml-6">
-          {teamDataList !== undefined?(
-             teamDataList.map((teamData) => (
-            <Link to={`/teams/${teamData.id}`} key={teamData.id}>
-              <div>
-                <TeamBox teamData={teamData} />
-                <Margin top="3" plustailwind="h-3" />
-              </div>
-            </Link>
-          ))
-          ):(<></>)
-         }
+          {teamDataList.length !== 0 ? (
+            teamDataList.map((teamData) => (
+              <Link to={`/teams/${teamData.id}`} key={teamData.id}>
+                <div>
+                  <TeamBox teamData={teamData} />
+                  <Margin top="3" plustailwind="h-3" />
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p>No data available.</p>
+          )}
         </div>
       </div>
       <Margin top="2" plustailwind="h-4" />
       <Contour />
       <Margin top="2" />
       <div className="flex justify-center items-center">
-        {/* 이전 페이지 링크 */}
-        {prevPage && (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              handlePageChange(prevPage);
-              setCurrentPage(currentPage - 1);
-            }}
-            className="cursor-pointer text-blue-500 hover:underline mr-2"
-          >
-            prev
-          </div>
-        )}
-
-        <div className="mr-2">{currentPage}</div>
-
-        {/* 다음 페이지 링크 */}
-        {nextPage && (
-          <div
-            role="button"
-            tabIndex={0}
-            onClick={() => {
-              handlePageChange(nextPage);
-              setCurrentPage(currentPage + 1);
-            }}
-            className="cursor-pointer text-blue-500 hover:underline"
-          >
-            next
-          </div>
-        )}
+        {/* Add your pagination component here */}
+        <NumberedPagination
+          count={teamPage.count}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          maxNum={5}
+        />
       </div>
     </div>
   );

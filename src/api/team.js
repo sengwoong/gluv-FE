@@ -139,6 +139,26 @@ export const applyToTeam = async ({id,userId}) => {
 
 
 
+export const fetchMyAppliedTeamData = async ({currentPage}) => {
+  const baseURL = import.meta.env.VITE_APP_API_KEY;
+  try {
+
+    const response = await Request('get', `${baseURL}/teams/myappliedteams/?page=${currentPage}`, {}, {}, {})
+    console.log("fetchMyAppliedTeamData")
+    console.log("fetchMyAppliedTeamData")
+    console.log(response)
+    return response
+
+  } catch (error) {
+    console.error("Fetching notice failed:", error.message);
+    return null;
+  }
+};
+
+
+
+
+
 export const fetchTeamData = async ({currentPage}) => {
   console.log(currentPage)
   try {
