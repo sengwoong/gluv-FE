@@ -11,9 +11,9 @@ import SelectButton from '../components/ui/Button/SelectButton';
 import { Link } from 'react-router-dom';
 import TopMenu from '../components/SideMenu/SelfBriefSideMenu';
 
-import TitleComponent from '../components/ui/Input/TitleComponent';
+import TitleComponent from '../components/ui/list/TitleComponent';
 import Margin from '../components/ui/Margin';
-import RecruitmentList from '../components/ui/Input/RecruitmentList';
+import RecruitmentList from '../components/ui/list/RecruitmentList';
 import HotRecruitmentList from '../components/SideMenu/HotRecruitmentList';
 import RecruitmentListLeftMenu from '../components/RecruitListPage/RecruitmentListLeftMenu';
 import NumberedPagination from '../components/Pagination/NumberedPagination';

@@ -7,7 +7,7 @@ import Contour from "../ui/Contour";
 
 import { Link } from "react-router-dom";
 import { Request } from "../../api/api";
-import TeamBox from "../ui/Input/TeamBox";
+import TeamBox from "../ui/list/TeamBox";
 import Margin from "../ui/Margin";
 
 function MainContents() {

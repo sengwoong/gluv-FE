@@ -3,8 +3,8 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import Margin from '../components/ui/Margin.jsx';
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton.jsx';
 import Contour from '../components/ui/Contour.jsx';
-import CommentList from '../components/ui/Input/CommentList.jsx';
-import InfoItem from '../components/ui/Input/InfoItem.jsx';
+import CommentList from '../components/ui/list/CommentList.jsx';
+import InfoItem from '../components/ui/list/InfoItem.jsx';
 import { NowformatDate, formatDate } from '../components/Data/datacalcul.js';
 import {
   FetchDelectRecruits,

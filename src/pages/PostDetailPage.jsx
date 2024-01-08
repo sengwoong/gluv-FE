@@ -7,17 +7,17 @@ import { AuthContext } from '../context/AuthContextProvider.jsx';
 
 import Margin from '../components/ui/Margin.jsx';
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton.jsx';
-import CommentList from '../components/ui/Input/CommentList.jsx';
+import CommentList from '../components/ui/list/CommentList.jsx';
 import Contour from '../components/ui/Contour.jsx';
 import { useParams } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 
 import ReportBtn from '../components/ui/Button/ReportBtn.jsx';
 import LikeButton from '../components/ui/Button/LikeButton.jsx';
-import InfoItem from '../components/ui/Input/InfoItem.jsx';
+import InfoItem from '../components/ui/list/InfoItem.jsx';
 import NumberedPagination from '../components/Pagination/NumberedPagination.jsx';
 import { NowformatDate, formatDate } from '../components/Data/datacalcul.js';
-import CreateComment from '../components/ui/Input/CreateComment.jsx';
+import CreateComment from '../components/ui/list/CreateComment.jsx';
 
 
 function PostDetailPage() {

@@ -4,10 +4,10 @@ import { createRecruitsPost } from '../api/recruits';
 
 
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton';
-import EditorComponent from '../components/ui/Input/EditorComponent';
-import InputField from '../components/ui/Input/InputField';
+import EditorComponent from '../components/ui/list/EditorComponent';
+import InputField from '../components/ui/list/InputField';
 import SelectButton from '../components/ui/Button/SelectButton';
-import { Link, useNavigate} from 'react-router-dom';
+import {  useNavigate} from 'react-router-dom';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import Margin from '../components/ui/Margin';

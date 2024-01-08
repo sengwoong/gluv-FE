@@ -129,9 +129,7 @@ function TeamLeftMenu() {
         <div className="text-lg mt-2 mb-5">
           내 역할: {teamContext.teamData.is_leader ? "리더" : "구성원"}
         </div>
-        <Margin top="1" />
-
-        <Margin top="1" />
+        <Margin top="2" />
         <Contour />
         <Link to={`/teams/${teamContext.teamData.id}/`}>
           <div className="menu-item cursor-pointer m-1">모임 상세 정보</div>

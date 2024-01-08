@@ -4,7 +4,7 @@ import { FetchCreatePost } from '../api/post';
 
 import Margin from '../components/ui/Margin';
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton';
-import EditorComponent from '../components/ui/Input/EditorComponent';
+import EditorComponent from '../components/ui/list/EditorComponent';
 import SelectButton from '../components/ui/Button/SelectButton';
 import { Link, useNavigate} from 'react-router-dom';
 

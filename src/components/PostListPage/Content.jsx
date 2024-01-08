@@ -8,7 +8,7 @@ import { FetchPost } from '../../api/post';
 import Margin from '../ui/Margin.jsx';
 import DynamicColorButton from '../ui/Button/DynamicColorButton.jsx';
 import useWindowSize from '../../context/useWindowSize.jsx';
-import BulletinBoard from '../ui/Input/BulletinBoard.jsx';
+import BulletinBoard from '../ui/list/BulletinBoard.jsx';
 import { ModelContext } from '../../context/ModelContextProvider';
 import ButtonPagination from '../Pagination/ButtonPagination.jsx';
 

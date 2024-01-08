@@ -4,7 +4,7 @@ import axios from "axios";
 
 import Contour from "../ui/Contour";
 import Margin from "../ui/Margin";
-import TeamBox from "../ui/Input/TeamBox";
+import TeamBox from "../ui/list/TeamBox";
 import NumberedPagination from "../Pagination/NumberedPagination";
 import { fetchTeamData } from "../../api/team";
 

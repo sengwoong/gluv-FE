@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Margin from '../components/ui/Margin';
 import DynamicColorButton from '../components/ui/Button/DynamicColorButton';
-import EditorComponent from '../components/ui/Input/EditorComponent';
+import EditorComponent from '../components/ui/list/EditorComponent';
 import SelectButton from '../components/ui/Button/SelectButton';
 import { Link, useNavigate, useParams} from 'react-router-dom';
 import { Request } from '../api/api';
