@@ -88,6 +88,7 @@ const pages = [
   // 유저 정보 수정페이지
   { path: "/users/edit/", component: Auth(ProfileEditPage), layoutType: "Non" },
 
+  // ----
   // 모임 상세 페이지 
   { path: "/teams/:id/", component: Auth(TeamPage), layoutType: "Non" },
   

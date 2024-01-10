@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { FetchTeam } from "../../api/team";
-import { TeamContext } from '../TeamPage/TeamContext';
+import { TeamContext } from '../../context/TeamContextProvider';
 import { Request } from '../../api/api';
 
 import EditForm from './EditForm';

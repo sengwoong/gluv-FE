@@ -7,7 +7,6 @@ import ModalPortal from '../ui/portal/ModalPortal';
 import PortalBgRight from '../ui/portal/PortalBgRight';
 import Contour from '../ui/Contour';
 import Margin from '../ui/Margin';
-import { OpenModalContext } from '../../context/OpenModalProvider';
 
 function ProfileForm() {
 

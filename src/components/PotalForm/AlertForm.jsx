@@ -7,7 +7,7 @@ import ModalPortal from '../ui/portal/ModalPortal';
 import PortalBgRight from '../ui/portal/PortalBgRight';
 
 function AlertForm() {
-  const { closeForm ,openForm} = useContext(OpenModalContext);
+  const {  openForm} = useContext(OpenModalContext);
   const notificationAPI = new NotificationAPI()
 
   const gotoAlertFormMain = () => {

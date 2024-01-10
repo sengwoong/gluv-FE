@@ -80,7 +80,7 @@ function LoginRegister() {
 
   return (
     <ModalPortal>
-      <PortalBg onClose={onClose}>
+      <PortalBg >
         <div className='flex items-center justify-center'>
           <div className='bg-white p-6 rounded-md w-96 z-50'>
             <h2 className='text-2xl font-bold mb-4 z-50'>회원가입</h2>

@@ -1,6 +1,6 @@
 import React, {  useContext } from "react";
 
-import { TeamContext } from './TeamContext';
+import { TeamContext } from '../../context/TeamContextProvider';
 
 import Margin from "../ui/Margin";
 import DynamicColorButton from "../ui/Button/DynamicColorButton";

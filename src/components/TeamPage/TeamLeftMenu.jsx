@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import { TeamContext } from './TeamContext';
+import { TeamContext } from '../../context/TeamContextProvider';
 import {  TeamLeave, TeamDelete } from "../../api/team";
 import { CheckRecruitsApplied } from "../../api/recruits";
 

@@ -9,7 +9,6 @@ import Margin from '../components/ui/Margin';
 import Contour from '../components/ui/Contour';
 import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 import TeamApply from '../components/TeamManagement/TeamApply';
-import { TeamContextProvider } from '../components/TeamPage/TeamContext';
 
 function TeamRegistrationManagement() {
   const { id } = useParams();
@@ -43,7 +42,7 @@ function TeamRegistrationManagement() {
 
   return (
     <div>
-    <TeamContextProvider>
+  
        <div className='flex'>
       <TeamLeftMenu />
 
@@ -89,7 +88,7 @@ function TeamRegistrationManagement() {
         </TeamManagementBackDesin>
       </div>
     </div>
-    </TeamContextProvider>
+
    
     </div>
   );

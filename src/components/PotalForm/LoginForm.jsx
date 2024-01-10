@@ -21,9 +21,6 @@ function LoginForm() {
 
   const { email, password } = formData;
 
-  const onClose = () => {
-    closeForm();
-  };
 
   const gotoRegister = () => {
     openForm('registerForm');
@@ -50,7 +47,7 @@ function LoginForm() {
 
   return (
     <ModalPortal>
-      <PortalBg onClose={onClose}>
+      <PortalBg >
         <div className='flex items-center justify-center'>
           <div className='bg-white p-6 rounded-md w-96 z-50'>
             <h2 className='text-2xl font-bold mb-4 z-50'>로그인</h2>

@@ -12,7 +12,6 @@ import Contour from '../components/ui/Contour';
 import TeamManagementBackDesin from '../components/TeamManagement/TeamManagementBackDesin';
 import TeamBoxLeader from '../components/TeamManagement/TeamBoxLeader';
 import TeamBoxCrew from '../components/TeamManagement/TeamBoxCrew';
-import { TeamContextProvider } from '../components/TeamPage/TeamContext';
 
 
 
@@ -53,7 +52,7 @@ function TeamManagement() {
 
 
   return (<div>
-    <TeamContextProvider>
+
       <div className='flex'>
         <TeamLeftMenu />
           <div className='flex items-center justify-center bg-gray-100'>
@@ -105,8 +104,7 @@ function TeamManagement() {
         </div>
       </div>
       
-    </TeamContextProvider>
-
+    
   
     </div>
   );

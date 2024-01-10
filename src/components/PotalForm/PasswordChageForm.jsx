@@ -60,7 +60,7 @@ function PasswordChangeForm({ onClose }) {
 
   return (
     <ModalPortal>
-      <PortalBg onClose={onClose}>
+      <PortalBg >
         <div className='flex items-center justify-center'>
           <div className='bg-white p-6 rounded-md w-96'>
             <h2 className='text-2xl font-bold mb-4'>비밀번호 찾기</h2>
